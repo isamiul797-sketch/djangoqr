@@ -1,0 +1,25 @@
+{% extends "core/base.html" %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="home-container">
+    <div class="hero-box">
+        <h1>🚀 Welcome to <span class="highlight">Sami Patrol Pump Payment</span></h1>
+        <p class="tagline">Generate & Scan QR codes for faster, secure and cashless transactions.</p>
+    </div>
+
+    <div class="features">
+        <div class="feature-card">
+            <h2>⚡ Generate QR</h2>
+            <p>Create QR codes instantly for payments and share them securely.</p>
+            <a href="{% url 'generate_qr' %}" class="btn">Generate Now</a>
+        </div>
+
+        <div class="feature-card">
+            <h2>📷 Scan QR</h2>
+            <p>Scan QR codes using your camera and process payments quickly.</p>
+            <a href="{% url 'scan_qr' %}" class="btn">Start Scanning</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

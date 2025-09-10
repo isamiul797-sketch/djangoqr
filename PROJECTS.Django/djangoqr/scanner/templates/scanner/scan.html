@@ -1,0 +1,41 @@
+{% extends "core/base.html" %}
+{% block title %}Scan QR{% endblock title %}
+{% block content %}
+<div class="center-container">
+    <div class="container">
+        <h1>Scan QR Code</h1>
+        <form action="{% url 'scan_qr' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="mobile_number"
+            placeholder="Enter 10-digit mobile number" required pattern="\d{10}">
+            <input type="file" name="qr_image" accept="image/*" id="qr-input">
+            <div id="imagePreview" style="margin-top: 10px;"></div>
+
+            <button type="submit">Scan</button>
+        </form>
+        <script>
+    const qrImageInput = document.getElementById('qr-input');
+    const imagePreview = document.getElementById('imagePreview');
+
+    qrImageInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.addEventListener('load', function() {
+                imagePreview.innerHTML = `<img src="${this.result}" alt="QR Image Preview" style="max-width: 300px; max-height: 300px;"/>`;
+            });
+
+            reader.readAsDataURL(file);
+        } else {
+            imagePreview.innerHTML = '';
+        }
+    });
+</script>
+
+        <h2>{{result}}</h2>
+    </div>
+</div>
+
+{% endblock content %}
+
